@@ -1,0 +1,160 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JAVERISA | Wear Your Own Story</title>
+
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h1><a href="/">J A V E R I S A</a></h1>
+
+        <nav>
+            <a href="/">HOME</a>
+            <a href="#collection">COLLECTION</a>
+            <a href="/style-quiz/">FIND YOUR VIBE</a>
+            <a href="/cart/">CART 🛒</a>
+
+            {% if user.is_authenticated %}
+                <a href="/">HELLO, {{ user.username|upper }}</a>
+            {% else %}
+                <a href="/login/">LOGIN</a>
+                <a href="/register/">SIGN UP</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Luxury Hero -->
+    <section class="hero">
+        <p>THE ART OF PERSONAL STYLE</p>
+
+        <h2>Wear Your Own Story.</h2>
+
+        <p>
+            Timeless pieces. Personal expression.
+            Fashion that feels like you.
+        </p>
+
+        <a class="add-cart"
+           href="#collection"
+           style="text-decoration:none;">
+            EXPLORE THE COLLECTION
+        </a>
+
+        <p style="margin-top:24px;">
+            Not sure what suits you?
+        </p>
+
+        <a href="/style-quiz/"
+           style="color:#70283D; font-weight:bold;">
+            DISCOVER YOUR VIBE →
+        </a>
+    </section>
+
+    <!-- Brand Introduction -->
+    <section style="padding:35px 20px; text-align:center;">
+        <p style="letter-spacing:3px; font-size:11px;">
+            YOUR STYLE. YOUR STORY.
+        </p>
+
+        <h2 style="font-family:Georgia,serif; font-weight:normal;">
+            Fashion Beyond Trends
+        </h2>
+
+        <p style="color:#776C68;">
+            Find the pieces that express who you are.
+        </p>
+    </section>
+
+    <!-- Product Collection -->
+    <section class="products" id="collection">
+        <h2>The Collection</h2>
+
+        <div class="product-grid">
+
+            {% for product in products %}
+                <div class="product-card">
+
+                    {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img
+                                src="{{ product.image }}"
+                                alt="{{ product.name }}"
+                                class="product-image"
+                                loading="lazy">
+                        </a>
+                    {% endif %}
+
+                    <h3>
+                        <a href="{% url 'product_detail' product.id %}">
+                            {{ product.name }}
+                        </a>
+                    </h3>
+
+                    <p>{{ product.description }}</p>
+
+                    <p class="price">₹{{ product.price }}</p>
+
+                    {% if product.stock > 0 %}
+                        <button
+                            class="add-cart"
+                            type="button"
+                            onclick="addToCart(
+                                '{{ product.name|escapejs }}',
+                                '{{ product.price }}'
+                            )">
+                            ADD TO CART
+                        </button>
+                    {% else %}
+                        <p>Currently out of stock</p>
+                    {% endif %}
+
+                </div>
+            {% empty %}
+                <p>
+                    Our collection is coming soon.
+                    Please check back later.
+                </p>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="letter-spacing:4px; font-size:18px;">
+            JAVERISA
+        </p>
+
+        <p>WEAR YOUR OWN STORY</p>
+
+        <p>© 2026 JAVERISA. All rights reserved.</p>
+    </footer>
+
+    <!-- Existing cart functionality -->
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert(name + " added to cart!");
+        }
+    </script>
+
+</body>
+</html>
+

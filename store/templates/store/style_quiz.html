@@ -1,0 +1,535 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Your Vibe | JAVERISA</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+
+    <style>
+        .quiz-container {
+            max-width: 850px;
+            margin: 45px auto;
+            padding: 25px;
+        }
+
+        .quiz-intro {
+            text-align: center;
+            padding: 35px 15px;
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .quiz-intro h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: normal;
+            margin: 8px 0;
+        }
+
+        .quiz-question {
+            padding: 25px;
+            background: white;
+            border: 1px solid var(--border);
+            margin-bottom: 18px;
+        }
+
+        .quiz-question h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            background: var(--ivory);
+        }
+
+        .quiz-option input {
+            accent-color: var(--burgundy);
+        }
+
+        .quiz-option span {
+            font-size: 14px;
+        }
+
+        .quiz-submit {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+
+        .quiz-submit:hover {
+            background: var(--burgundy-dark);
+        }
+
+        #quiz-result {
+            display: none;
+            margin-top: 35px;
+        }
+
+        .result-panel {
+            padding: 30px;
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .result-panel h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--burgundy);
+            font-size: 34px;
+            font-weight: normal;
+        }
+
+        .quiz-product {
+            display: none;
+        }
+
+        .quiz-product .product-image {
+            height: 240px;
+        }
+
+        .quiz-product .add-cart {
+            width: 100%;
+        }
+
+        .quiz-error {
+            display: none;
+            color: var(--burgundy);
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .quiz-question {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="/">J A V E R I S A</a></h1>
+
+        <nav>
+            <a href="/">HOME</a>
+            <a href="/#collection">COLLECTION</a>
+            <a href="/cart/">CART 🛒</a>
+        </nav>
+    </header>
+
+    <main class="quiz-container">
+
+        <section class="quiz-intro">
+            <p style="letter-spacing:3px; font-size:11px;">
+                JAVERISA STYLE DISCOVERY
+            </p>
+
+            <h2>Find Your Vibe.</h2>
+
+            <p>
+                Your style is personal. Let's discover yours.
+            </p>
+
+            <p style="color:var(--muted); font-size:13px;">
+                Answer three quick questions to find your style profile.
+            </p>
+        </section>
+
+        <form id="vibe-quiz">
+
+            <section class="quiz-question">
+                <h3>01 — Which style feels most like you?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="vibe"
+                           value="minimal" required>
+                    <span>
+                        <strong>Quiet Minimalist</strong><br>
+                        Clean lines, timeless basics and effortless looks.
+                    </span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="vibe"
+                           value="streetwear">
+                    <span>
+                        <strong>Urban Explorer</strong><br>
+                        Relaxed fits, denim and everyday statement pieces.
+                    </span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="vibe"
+                           value="elegant">
+                    <span>
+                        <strong>Modern Romantic</strong><br>
+                        Elegant silhouettes and feminine details.
+                    </span>
+                </label>
+            </section>
+
+            <section class="quiz-question">
+                <h3>02 — Choose your favourite palette.</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="palette"
+                           value="neutral" required>
+                    <span>Ivory, beige, black and earthy neutrals</span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="palette"
+                           value="bold">
+                    <span>Burgundy, dark tones and bold contrasts</span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="palette"
+                           value="soft">
+                    <span>Soft colours and delicate shades</span>
+                </label>
+            </section>
+
+            <section class="quiz-question">
+                <h3>03 — What are you dressing for?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="occasion"
+                           value="everyday" required>
+                    <span>Everyday comfort and casual outings</span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="occasion"
+                           value="outing">
+                    <span>Going out with friends or exploring the city</span>
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="occasion"
+                           value="special">
+                    <span>Special occasions and memorable moments</span>
+                </label>
+            </section>
+
+            <p class="quiz-error" id="quiz-error" role="alert">
+                Please answer all three questions first.
+            </p>
+
+            <button class="quiz-submit" type="submit">
+                DISCOVER MY VIBE →
+            </button>
+        </form>
+
+        <!-- Results -->
+        <section id="quiz-result" aria-live="polite">
+
+            <div class="result-panel">
+                <p style="letter-spacing:2px; font-size:11px;">
+                    YOUR JAVERISA STYLE PROFILE
+                </p>
+
+                <h2 id="result-title"></h2>
+                <p id="result-description"></p>
+                <p id="result-palette"
+                   style="color:var(--burgundy);"></p>
+            </div>
+
+            <section class="products">
+                <h2>Your Style Edit</h2>
+
+                <p id="product-message"
+                   style="text-align:center; color:var(--muted);">
+                </p>
+
+                <div class="product-grid">
+                    {% for product in products %}
+                    <article
+                        class="product-card quiz-product"
+                        data-name="{{ product.name|lower }}"
+                        data-description="{{ product.description|lower }}"
+                        data-stock="{{ product.stock }}">
+
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img
+                                src="{{ product.image }}"
+                                alt="{{ product.name }}"
+                                class="product-image"
+                                loading="lazy">
+                        </a>
+                        {% endif %}
+
+                        <h3>
+                            <a href="{% url 'product_detail' product.id %}">
+                                {{ product.name }}
+                            </a>
+                        </h3>
+
+                        <p>{{ product.description }}</p>
+                        <p class="price">₹{{ product.price }}</p>
+
+                        {% if product.stock > 0 %}
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product-name="{{ product.name|escape }}"
+                            data-product-price="{{ product.price }}">
+                            ADD TO CART
+                        </button>
+                        {% else %}
+                        <p>Currently out of stock</p>
+                        {% endif %}
+                    </article>
+                    {% empty %}
+                    <p>
+                        No products have been added yet.
+                        Add products in Django Admin to show recommendations.
+                    </p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <p style="text-align:center;">
+                <button type="button" class="add-cart"
+                        id="retake-quiz">
+                    RETAKE THE QUIZ
+                </button>
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p style="letter-spacing:4px; font-size:18px;">
+            JAVERISA
+        </p>
+        <p>WEAR YOUR OWN STORY</p>
+        <p>© 2026 JAVERISA. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const quizForm = document.getElementById("vibe-quiz");
+        const resultSection = document.getElementById("quiz-result");
+        const quizError = document.getElementById("quiz-error");
+
+        const productCards = Array.from(
+            document.querySelectorAll(".quiz-product")
+        );
+
+        const resultProfiles = {
+            minimal: {
+                title: "The Quiet Minimalist",
+                description:
+                    "You value effortless style, versatile essentials " +
+                    "and pieces that never go out of fashion.",
+                palette: "Your palette: Ivory, beige, black and earthy neutrals."
+            },
+            streetwear: {
+                title: "The Urban Explorer",
+                description:
+                    "You love relaxed silhouettes, casual confidence " +
+                    "and practical pieces with personality.",
+                palette: "Your palette: Bold contrasts and modern dark tones."
+            },
+            elegant: {
+                title: "The Modern Romantic",
+                description:
+                    "You gravitate towards polished looks, elegant details " +
+                    "and pieces that make everyday moments feel special.",
+                palette: "Your palette: Soft shades, rich burgundy and timeless neutrals."
+            }
+        };
+
+        function addToCart(name, price) {
+            let cart = [];
+
+            try {
+                cart = JSON.parse(localStorage.getItem("cart")) || [];
+                if (!Array.isArray(cart)) {
+                    cart = [];
+                }
+            } catch (error) {
+                cart = [];
+            }
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(name + " added to cart!");
+        }
+
+        document.querySelectorAll(
+            ".quiz-product .add-cart"
+        ).forEach(function(button) {
+            button.addEventListener("click", function() {
+                addToCart(
+                    button.dataset.productName,
+                    button.dataset.productPrice
+                );
+            });
+        });
+
+        quizForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(quizForm);
+            const vibe = formData.get("vibe");
+            const palette = formData.get("palette");
+            const occasion = formData.get("occasion");
+
+            if (!vibe || !palette || !occasion) {
+                quizError.style.display = "block";
+                return;
+            }
+
+            quizError.style.display = "none";
+
+            const profile = resultProfiles[vibe];
+
+            document.getElementById("result-title").textContent =
+                profile.title;
+
+            document.getElementById("result-description").textContent =
+                profile.description;
+
+            document.getElementById("result-palette").textContent =
+                profile.palette;
+
+            const productMessage =
+                document.getElementById("product-message");
+
+            /*
+             * Recommendations use existing product names and descriptions.
+             * These are simple keyword-based suggestions, not AI predictions.
+             */
+            const keywordGroups = {
+                minimal: [
+                    "cotton", "t-shirt", "tshirt", "basic",
+                    "denim", "jeans", "handbag"
+                ],
+                streetwear: [
+                    "sweatshirt", "sneaker", "shoe",
+                    "jeans", "denim", "t-shirt", "tshirt"
+                ],
+                elegant: [
+                    "dress", "floral", "handbag", "bag"
+                ]
+            };
+
+            const occasionKeywords = {
+                everyday: ["cotton", "t-shirt", "tshirt", "sweatshirt",
+                           "jeans", "sneaker", "shoe"],
+                outing: ["jeans", "denim", "sneaker", "shoe",
+                         "handbag", "bag", "sweatshirt"],
+                special: ["dress", "floral", "handbag", "bag"]
+            };
+
+            let matches = 0;
+
+            productCards.forEach(function(card) {
+                const searchableText =
+                    (card.dataset.name + " " +
+                     card.dataset.description).toLowerCase();
+
+                const styleMatch = keywordGroups[vibe].some(
+                    keyword => searchableText.includes(keyword)
+                );
+
+                const occasionMatch = occasionKeywords[occasion].some(
+                    keyword => searchableText.includes(keyword)
+                );
+
+                /*
+                 * Palette is part of the style profile; products do not
+                 * have colour data in the existing database.
+                 */
+                const showProduct = styleMatch && occasionMatch &&
+                    Number(card.dataset.stock) > 0;
+
+                card.style.display = showProduct ? "block" : "none";
+
+                if (showProduct) {
+                    matches++;
+                }
+            });
+
+            if (matches === 0) {
+                productCards.forEach(function(card) {
+                    const inStock = Number(card.dataset.stock) > 0;
+                    card.style.display = inStock ? "block" : "none";
+
+                    if (inStock) {
+                        matches++;
+                    }
+                });
+
+                productMessage.textContent = matches > 0
+                    ? "No exact keyword match, so here are available pieces to explore."
+                    : "No in-stock products are available yet. Please check back soon.";
+            } else {
+                productMessage.textContent =
+                    "Selected from your current collection based on your style and occasion.";
+            }
+
+            resultSection.style.display = "block";
+            resultSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+        document.getElementById("retake-quiz").addEventListener(
+            "click",
+            function() {
+                quizForm.reset();
+                resultSection.style.display = "none";
+                quizError.style.display = "none";
+
+                productCards.forEach(function(card) {
+                    card.style.display = "none";
+                });
+
+                quizForm.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        );
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }} - Fashion Store</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Fashion Store 👗</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart/">Cart 🛒</a>
+        </nav>
+    </header>
+
+
+    <!-- Product Details -->
+    <section class="products">
+
+        <div class="product-card">
+
+            <h2>{{ product.name }}</h2>
+
+            <p>{{ product.description }}</p>
+
+            <p class="price">
+                ₹{{ product.price }}
+            </p>
+
+            <p>
+                Stock available: {{ product.stock }}
+            </p>
+
+            <button
+                class="add-cart"
+                onclick="addToCart('{{ product.name }}', '{{ product.price }}')">
+                Add to Cart 🛒
+            </button>
+
+            <br><br>
+
+            <a href="/">
+                ← Back to Products
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Fashion Store. All rights reserved.</p>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function addToCart(name, price) {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert(name + " added to cart! 🛒");
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Fashion Store</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Fashion Store 👗</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart/">Cart 🛒</a>
+            <a href="/login/">Login</a>
+        </nav>
+    </header>
+
+
+    <section class="products">
+
+        <div class="product-card">
+
+            <h2>Login 👤</h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <p>
+                    <label>Username:</label><br>
+                    <input type="text" name="username" required>
+                </p>
+
+                <p>
+                    <label>Password:</label><br>
+                    <input type="password" name="password" required>
+                </p>
+
+                <button type="submit" class="add-cart">
+                    Login
+                </button>
+
+            </form>
+
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+
+            <p>
+                Don't have an account?
+                <a href="/register/">Register here</a>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>© 2026 Fashion Store. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

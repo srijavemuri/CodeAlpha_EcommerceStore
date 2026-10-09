@@ -1,0 +1,52 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - Fashion Store</title>
+
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Fashion Store 👗</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart/">Cart 🛒</a>
+        </nav>
+    </header>
+
+    <section class="products">
+
+        <div class="product-card">
+
+            <h2>🎉 Order Placed Successfully!</h2>
+
+            <p>Thank you for shopping with Fashion Store.</p>
+
+            <p>Your order has been saved successfully.</p>
+
+            <a href="/">Continue Shopping</a>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Fashion Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Clear the shopping cart after a successful order
+        localStorage.removeItem("cart");
+    </script>
+
+</body>
+</html>

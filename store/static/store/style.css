@@ -1,0 +1,328 @@
+
+/* ==========================================
+   JAVERISA — Wear Your Own Story
+   Luxury Editorial Fashion Theme
+   ========================================== */
+
+:root {
+    --ivory: #F7F1E8;
+    --paper: #FFFCF8;
+    --burgundy: #70283D;
+    --burgundy-dark: #4B1929;
+    --ink: #211D1D;
+    --muted: #776C68;
+    --border: #E4D9CE;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Header */
+
+header {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 22px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 27px;
+    font-weight: normal;
+    letter-spacing: 4px;
+}
+
+header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: var(--burgundy);
+}
+
+/* Hero */
+
+.hero {
+    text-align: center;
+    padding: 90px 20px;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h2 {
+    max-width: 850px;
+    margin: 0 auto 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1.12;
+    font-weight: normal;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    margin: 12px auto 24px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* Sections */
+
+.products {
+    padding: 55px 6%;
+    min-height: 280px;
+}
+
+.products > h2 {
+    text-align: center;
+    margin: 0 0 35px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: normal;
+}
+
+/* Product grid */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 230px), 1fr)
+    );
+    gap: 28px 22px;
+    align-items: stretch;
+}
+
+.product-card {
+    min-width: 0;
+    padding: 15px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow-wrap: anywhere;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(33, 29, 29, 0.08);
+}
+
+.product-image {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: var(--ivory);
+}
+
+.product-card h3 {
+    margin: 18px 0 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 1.35;
+}
+
+.product-card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.product-card h3 a:hover {
+    color: var(--burgundy);
+}
+
+.product-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.price {
+    color: var(--burgundy) !important;
+    font-size: 19px !important;
+    font-weight: bold;
+}
+
+/* Buttons */
+
+.add-cart,
+button {
+    font-family: inherit;
+}
+
+.add-cart {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid var(--burgundy);
+    border-radius: 0;
+    background: var(--burgundy);
+    color: var(--white);
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.add-cart:hover {
+    background: var(--burgundy-dark);
+}
+
+/* Forms */
+
+input,
+textarea,
+select {
+    max-width: 100%;
+    font: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 7px 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--white);
+    color: var(--ink);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--burgundy);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--burgundy);
+    outline-offset: 3px;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 35px;
+    padding: 28px 20px;
+    background: var(--ink);
+    color: var(--ivory);
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Responsive layout */
+
+@media (max-width: 650px) {
+    header {
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 60px 18px;
+    }
+
+    .products {
+        padding: 35px 18px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-image {
+        height: 190px;
+    }
+
+    .product-card h3 {
+        font-size: 18px;
+    }
+
+    .add-cart {
+        width: 100%;
+        padding: 11px 8px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 380px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 260px;
+    }
+}
+
