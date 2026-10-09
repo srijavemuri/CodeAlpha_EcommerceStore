@@ -1,124 +1,62 @@
-\# JAVERISA — E-commerce Store
 
+# JAVERISA — E-commerce Store
 
-
-\*\*Wear Your Own Story\*\*
-
-
+**Wear Your Own Story**
 
 JAVERISA is a beginner-friendly e-commerce website developed as part of my CodeAlpha Full Stack Development Internship.
 
+## Features
 
+- Product listing and product detail pages
+- Shopping cart
+- Checkout and order success page
+- User registration and login
+- Django Admin for managing products and orders
+- Find Your Vibe style quiz with product recommendations
+- Responsive styling using HTML and CSS
 
-\## Features
+## Technologies Used
 
+- Python
+- Django
+- HTML
+- CSS
+- JavaScript
+- SQLite
 
+## Run Locally
 
-\* Product listing and product detail pages
+1. Clone the repository:
+   `git clone https://github.com/srijavemuri/CodeAlpha_EcommerceStore.git`
 
-\* Shopping cart
+2. Open the project folder:
+   `cd CodeAlpha_EcommerceStore`
 
-\* Checkout and order success page
+3. Create a virtual environment:
+   `python -m venv venv`
 
-\* User registration and login
+4. Activate it in Windows PowerShell:
+   `.\venv\Scripts\Activate.ps1`
 
-\* Django Admin for managing products and orders
+5. Install Django:
+   `pip install django`
 
-\* Find Your Vibe style quiz with product recommendations
+6. Apply migrations:
+   `python manage.py migrate`
 
-\* Responsive styling using HTML and CSS
+7. Start the server:
+   `python manage.py runserver`
 
+8. Open `http://127.0.0.1:8000/` in your browser.
 
+## Project Note
 
-\## Technologies Used
+This is an educational internship project. Checkout is a demo flow and does not process real payments.
 
-
-
-\* Python
-
-\* Django
-
-\* HTML
-
-\* CSS
-
-\* JavaScript
-
-\* SQLite
-
-
-
-\## Run Locally
-
-
-
-1\. Clone this repository:
-
-&#x20;  `git clone https://github.com/srijavemuri/CodeAlpha\_EcommerceStore.git`
-
-
-
-2\. Open the project folder:
-
-&#x20;  `cd CodeAlpha\_EcommerceStore`
-
-
-
-3\. Create and activate a virtual environment:
-
-&#x20;  `python -m venv venv`
-
-
-
-&#x20;  Windows PowerShell:
-
-&#x20;  `.\\venv\\Scripts\\Activate.ps1`
-
-
-
-4\. Install Django:
-
-&#x20;  `pip install django`
-
-
-
-5\. Apply migrations:
-
-&#x20;  `python manage.py migrate`
-
-
-
-6\. Start the development server:
-
-&#x20;  `python manage.py runserver`
-
-
-
-7\. Open `http://127.0.0.1:8000/` in your browser.
-
-
-
-\## Project Note
-
-
-
-This project is built for learning and internship demonstration. Checkout is a demo flow and does not process real payments.
-
-
-
-\## Internship
-
-
+## Internship
 
 CodeAlpha — Full Stack Development Internship
 
-
-
-\## Author
-
-
+## Author
 
 Srija
-
-
-
